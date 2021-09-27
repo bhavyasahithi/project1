@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Projectmain {
 	public static void main(String[] args) {
-		Menuoptions.printWelcomeScreen("Welcome1" , "Bhavya");
+		Menuoptions.printWelcome1("Welcome1" , "Bhavya");
 		handleWelcomeScreenInput();
 	}
 	private static void handleWelcomeScreenInput() {
