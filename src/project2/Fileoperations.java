@@ -11,9 +11,18 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
 public class Fileoperations {
+	public static void createMainFolderIfNotPresent(String folderName) {
+		File file = new File(folderName);
+
+		// If file doesn't exist, create the main folder
+		if (!file.exists()) {
+			file.mkdirs();
+		}
+	}
+
 	public static void displayAllFiles(String path) {
+		Fileoperations.createMainFolderIfNotPresent("main");
 		// All required files and folders inside "main" folder relative to current
 		// folder
 		System.out.println("Displaying all files with directory structure in ascending order\n");
@@ -48,6 +57,33 @@ public class Fileoperations {
 		System.out.println();
 		return fileListNames;
 	}
+
+	public static void createFile(String fileToAdd, Scanner sc) {
+		Fileoperations.createMainFolderIfNotPresent("main");
+		Path pathToFile = Paths.get("./main/" + fileToAdd);
+		try {
+			Files.createDirectories(pathToFile.getParent());
+			Files.createFile(pathToFile);
+			System.out.println(fileToAdd + " created successfully");
+
+			System.out.println("Would you like to add some content to the file? (Y/N)");
+			String choice = sc.next().toLowerCase();
+
+			sc.nextLine();
+			if (choice.equals("y")) {
+				System.out.println("\n\nInput content and press enter\n");
+				String content = sc.nextLine();
+				Files.write(pathToFile, content.getBytes());
+				System.out.println("\nContent written to file " + fileToAdd);
+				System.out.println("Content can be read using Notepad or Notepad++");
+			}
+
+		} catch (IOException e) {
+			System.out.println("Failed to create file " + fileToAdd);
+			System.out.println(e.getClass().getName());
+		}
+	}
+
 	public static List<String> displayFileLocations(String fileName, String path) {
 		List<String> fileListNames = new ArrayList<>();
 		Fileoperations.searchFileRecursively(path, fileName, fileListNames);
@@ -101,7 +137,7 @@ public class Fileoperations {
 			System.out.println("Failed to delete " + currFileName);
 		}
 
-	}
+	/*}
 
 	public static void createFile(String fileToAdd, Scanner sc) {
 		Path pathToFile = Paths.get("./main/" + fileToAdd);
@@ -124,9 +160,13 @@ public class Fileoperations {
 		} catch (IOException e) {
 			System.out.println("Failed to create file " + fileToAdd);
 			System.out.println(e.getClass().getName());
-		}
+		}*/
 	}
 }
+	
+
+	
+
 	
 
 
