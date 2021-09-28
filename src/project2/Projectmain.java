@@ -11,38 +11,43 @@ public class Projectmain {
 
 				Menuoptions.printWelcome1("Welcome1", "Bhavya");
 
-				handleWelcomeScreenInput();
-			}
+				//handleWelcomeScreenInput();
+				HandleOptions.handleWelcomeScreenInput();
+	}
 
-			private static void handleWelcomeScreenInput() {
-				boolean running = true;
-				Scanner sc = new Scanner(System.in);
-				do {
-					try {
-						Menuoptions.displayMenu();
-						int input = sc.nextInt();
-						switch (input) {
-						case 1:
-							Fileoperations.displayAllFiles("main");
-							break;
-						case 2:
-							Menuoptions.handleFileMenuOptions();
-							break;
-						case 3:
-							System.out.println("Program exited successfully.");
-							running = false;
-							sc.close();
-							System.exit(0);
-							break;
-						default:
-							System.out.println("Please select a valid option from above.");
-						}
-					} catch (Exception e) {
-						System.out.println(e.getClass().getName());
-						handleWelcomeScreenInput();
-					} 
-				} while (running == true);
-			}
+	/*private static void handleWelcomeScreenInput() {
+		boolean running = true;
+		Scanner sc = new Scanner(System.in);
+		do {
+			try {
+				Menuoptions.displayMenu();
+				int input = sc.nextInt();
+
+				switch (input) {
+				case 1:
+					Fileoperations.displayAllFiles("main");
+					break;
+				case 2:
+					Menuoptions.handleFileMenuoptions();
+					break;
+				case 3:
+					System.out.println("Program exited successfully.");
+					running = false;
+					sc.close();
+					System.exit(0);
+					break;
+				default:
+					System.out.println("Please select a valid option from above.");
+				}
+			} catch (Exception e) {
+				System.out.println(e.getClass().getName());
+				handleWelcomeScreenInput();
+			} 
+		} while (running == true);
+	}
+
+}*/
+			
 		
 		
 		

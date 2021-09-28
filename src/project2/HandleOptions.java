@@ -1,38 +1,45 @@
 package project2;
-//import java.util.List;
-//import java.util.Scanner;
+import java.util.List;
+import java.util.Scanner;
 
-public class Menuoptions {
-	public static void printWelcome1(String appName, String developerName) {
-		String companyDetails = String.format("*****************************************************\n"
-				+ "** Welcome to %s.com. \n" + "** This application was developed by %s.\n"
-				+ "*****************************************************\n", appName, developerName);
-		String appFunction = "You can use this application to :-\n"
-				+ "• Retrieve all file names in the \"main\" folder\n"
-				+ "• Search, add, or delete files in \"main\" folder.\n"
-				+ "\n**Please be careful to ensure the correct filename is provided for searching or deleting files.**\n";
-		System.out.println(companyDetails);
-		System.out.println(appFunction);
-	}
-	public static void displayMenu() {
-		String menu = "\n\n****** Select any option number from below and press Enter ******\n\n"
-				+ "1) Retrieve all files inside \"main\" folder\n" + "2) Display menu for File operations\n"
-				+ "3) Exit program\n";
-		System.out.println(menu);
-	}
-	public static void displayFileMenuOptions() {
-		String fileMenu = "\n\n****** Select any option number from below and press Enter ******\n\n"
-				+ "1) Add a file to \"main\" folder\n" + "2) Delete a file from \"main\" folder\n"
-				+ "3) Search for a file from \"main\" folder\n" + "4) Show Previous Menu\n" + "5) Exit program\n";
-		System.out.println(fileMenu);
-	}
-
-	/*public static void handleFileMenuOptions() {
+public class HandleOptions {
+	public static void handleWelcomeScreenInput() {
 		boolean running = true;
 		Scanner sc = new Scanner(System.in);
 		do {
 			try {
-				displayFileMenuOptions();
+				Menuoptions.displayMenu();
+				int input = sc.nextInt();
+
+				switch (input) {
+				case 1:
+					Fileoperations.displayAllFiles("main");
+					break;
+				case 2:
+					HandleOptions.handleFileMenuOptions();
+					break;
+				case 3:
+					System.out.println("Program exited successfully.");
+					running = false;
+					sc.close();
+					System.exit(0);
+					break;
+				default:
+					System.out.println("Please select a valid option from above.");
+				}
+			} catch (Exception e) {
+				System.out.println(e.getClass().getName());
+				handleWelcomeScreenInput();
+			} 
+		} while (running == true);
+	}
+
+	public static void handleFileMenuOptions() {
+		boolean running = true;
+		Scanner sc = new Scanner(System.in);
+		do {
+			try {
+				Menuoptions.displayFileMenuOptions();
 				Fileoperations.createMainFolderIfNotPresent("main");
 
 				int input = sc.nextInt();
@@ -98,19 +105,10 @@ public class Menuoptions {
 				handleFileMenuOptions();
 			}
 		} while (running == true);
-	}*/
-}
-	
-	
-
-
-		
-	
-
+	}
 
 
 	
-		
-
+	}
 
 
